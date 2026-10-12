@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>清沐植萃牙膏 调研活动</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:"Microsoft Yahei",sans-serif;
+    }
+
+    body{
+        background:#f5f7fa;
+        padding:40px 20px;
+    }
+
+    .wrap{
+        max-width:700px;
+        margin:auto;
+        background:#fff;
+        padding:40px;
+        border-radius:12px;
+        box-shadow:0 2px 15px rgba(0,0,0,0.08);
+    }
+
+    .page{
+        display:none;
+    }
+
+    .page.active{
+        display:block;
+    }
+
+    h2{
+        text-align:center;
+        color:#333;
+        margin-bottom:30px;
+    }
+
+    p{
+        line-height:1.8;
+        color:#555;
+        font-size:16px;
+        margin-bottom:16px;
+    }
+
+    .page1-title{
+        font-size:24px;
+        font-weight:bold;
+        text-align:center;
+        color:#27ae60;
+        margin:20px 0;
+        line-height:1.6;
+    }
+
+    .page1-desc{
+        text-align:center;
+        font-size:17px;
+        color:#444;
+        margin:12px 0;
+    }
+
+    .btn{
+        display:inline-block;
+        padding:12px 30px;
+        border-radius:8px;
+        border:none;
+        font-size:16px;
+        cursor:pointer;
+        margin:10px;
+        transition:0.2s;
+    }
+
+    .btn:hover{
+        transform:translateY(-1px);
+    }
+
+    .btn-blue{
+        background:#409eff;
+        color:#fff;
+    }
+
+    .btn-green{
+        background:#67c23a;
+        color:#fff;
+    }
+
+    .btn-red{
+        background:#f56c6c;
+        color:#fff;
+    }
+
+    .btn-center{
+        text-align:center;
+        margin-top:30px;
+    }
+
+    .lottery-submit-box{
+        width:100%;
+        border:2px solid #409eff;
+        color:#409eff;
+        background:#f5faff;
+        border-radius:10px;
+        padding:16px 20px;
+        text-align:center;
+        font-size:18px;
+        font-weight:bold;
+        cursor:pointer;
+        margin-top:40px;
+        transition:0.2s;
+    }
+
+    .lottery-submit-box:hover{
+        background:#409eff;
+        color:#fff;
+        transform:translateY(-1px);
+    }
+
+    .result-page{
+        text-align:center;
+        padding:80px 20px;
+    }
+
+    .result-text{
+        font-size:26px;
+        font-weight:bold;
+        color:#666;
+        margin-bottom:20px;
+    }
+
+    .swiper-container{
+        width:100%;
+        overflow:hidden;
+        border-radius:8px;
+        margin:20px 0;
+    }
+
+    .swiper-wrapper{
+        display:flex;
+        transition:transform 0.35s ease;
+        touch-action:pan-y;
+    }
+
+    .swiper-slide{
+        min-width:100%;
+    }
+
+    .swiper-slide img{
+        width:100%;
+        border-radius:8px;
+        cursor:pointer;
+    }
+
+    .tip-text{
+        color:#999;
+        font-size:14px;
+        text-align:center;
+        margin:10px 0;
+    }
+
+    .product-name{
+        font-size:22px;
+        font-weight:bold;
+        color:#222;
+        text-align:center;
+        margin-bottom:15px;
+    }
+
+    .product-intro{
+        text-align:center;
+        font-size:16px;
+        color:#444;
+        line-height:1.9;
+        margin:20px 0;
+    }
+
+    .cart-wrap{
+        display:none;
+    }
+
+    .img-modal{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.9);
+        display:none;
+        align-items:center;
+        justify-content:center;
+        z-index:999;
+        padding:20px;
+    }
+
+    .img-modal img{
+        max-width:100%;
+        max-height:90vh;
+    }
+
+    .q-item{
+        margin-bottom:35px;
+    }
+
+    .q-title{
+        font-size:16px;
+        color:#333;
+        margin-bottom:14px;
+        line-height:1.8;
+    }
+
+    .option{
+        display:block;
+        margin:10px 0;
+        font-size:15px;
+        border:1px solid #dcdfe6;
+        border-radius:8px;
+        padding:10px 12px;
+        color:#555;
+        cursor:pointer;
+        background:#fff;
+        transition:0.2s;
+    }
+
+    .option:hover{
+        border-color:#409eff;
+        background:#f5faff;
+    }
+
+    .option input{
+        margin-right:8px;
+    }
+
+    .text-input{
+        width:100%;
+        border:1px solid #dcdfe6;
+        border-radius:8px;
+        padding:12px 14px;
+        font-size:15px;
+        color:#333;
+        outline:none;
+        transition:0.2s;
+    }
+
+    .text-input:focus{
+        border-color:#409eff;
+        box-shadow:0 0 0 3px rgba(64,158,255,.12);
+    }
+
+    .likert-options{
+        display:grid;
+        grid-template-columns:repeat(7, 1fr);
+        gap:8px;
+        margin-top:12px;
+    }
+
+    .likert-option{
+        border:1px solid #dcdfe6;
+        border-radius:8px;
+        padding:10px 6px;
+        text-align:center;
+        font-size:13px;
+        color:#555;
+        cursor:pointer;
+        background:#fff;
+        line-height:1.5;
+        transition:0.2s;
+    }
+
+    .likert-option:hover{
+        border-color:#409eff;
+        background:#f5faff;
+    }
+
+    .likert-option input{
+        display:inline-block;
+        margin:0 6px 0 0;
+        vertical-align:middle;
+    }
+
+    @media (max-width:600px){
+        .wrap{
+            padding:28px 20px;
+        }
+
+        .likert-options{
+            grid-template-columns:1fr;
+        }
+
+        .likert-option{
+            text-align:left;
+        }
+
+        .likert-option input{
+            display:inline-block;
+            margin:0 8px 0 0;
+        }
+    }
+
+    .slider-container{
+        margin-top:18px;
+        padding:10px 5px;
+    }
+
+    .score-row{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:14px;
+    }
+
+    .score-label{
+        font-size:13px;
+        color:#999;
+    }
+
+    .score-text{
+        font-size:22px;
+        font-weight:bold;
+        color:#409eff;
+        min-width:80px;
+        text-align:center;
+    }
+
+    .score-slider{
+        width:100%;
+        height:16px;
+        border-radius:999px;
+        outline:none;
+        appearance:none;
+        -webkit-appearance:none;
+        cursor:pointer;
+
+        background:linear-gradient(
+            to right,
+            #409eff 0%,
+            #409eff 50%,
+            #e5e7eb 50%,
+            #e5e7eb 100%
+        );
+
+        transition:background .1s;
+        touch-action:pan-y;
+    }
+
+    .score-slider::-webkit-slider-thumb{
+        -webkit-appearance:none;
+        appearance:none;
+
+        width:32px;
+        height:32px;
+        border-radius:50%;
+        background:#fff;
+        border:4px solid #409eff;
+
+        box-shadow:0 3px 10px rgba(64,158,255,.35);
+
+        transition:.12s;
+    }
+
+    .score-slider:active::-webkit-slider-thumb{
+        transform:scale(1.12);
+    }
+
+    .score-slider::-moz-range-thumb{
+        width:32px;
+        height:32px;
+        border-radius:50%;
+        background:#fff;
+        border:4px solid #409eff;
+        box-shadow:0 3px 10px rgba(64,158,255,.35);
+        cursor:pointer;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+    <!-- 第一页 -->
+
+    <div class="page active" id="page1">
+
+        <div class="page1-title">
+            参与调研<br>
+            赢取清沐植萃牙膏
+        </div>
+
+        <p class="page1-desc">
+            我们正在开发一款口腔护理牙膏，您的意见对我们至关重要。
+        </p>
+
+        <p class="page1-desc">
+            完成简短调研，即有机会免费获得<br>
+            最新款 清沐植萃牙膏！
+        </p>
+
+        <p class="page1-desc">
+            阅读完毕后，请点击下方的「了解产品」<br>
+            按钮参与活动！
+        </p>
+
+        <div class="btn-center">
+            <button class="btn btn-blue" onclick="goPage(2)">
+                了解产品
+            </button>
+        </div>
+
+    </div>
+
+    <!-- 第二页 -->
+
+    <div class="page" id="page2">
+
+        <h2>产品详情介绍</h2>
+
+        <div class="product-name">
+            清沐植萃牙膏
+        </div>
+
+        <div class="swiper-container" id="swiper">
+
+            <div class="swiper-wrapper" id="swiperWrap">
+
+                <div class="swiper-slide">
+                    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAET_c5p_bLYwk5Pn7iCQyaDBkbZ-8ABMgACFhwAAiZu8Ffw5BaJ66OR6DsE.png" onclick="openBigImg(this.src)">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAET_dZp_bN-O8IcQKqdgoQZ2bHyG0aPogACIhwAAiZu8FcOijgX9qzGuTsE.png" onclick="openBigImg(this.src)">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAET_ddp_bPlwKyOoQVtvtnbCYDxer00KQACJxwAAiZu8FeMfQPe3VF0tDsE.png" onclick="openBigImg(this.src)">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://img.remit.ee/api/file/BQACAgUAAyEGAASHRsPbAAET_dtp_bQqXaqMakFx6dXldEsmuasCGAACLBwAAiZu8Fe3OOrA4kqTaDsE.png" onclick="openBigImg(this.src)">
+                </div>
+
+            </div>
+
+        </div>
+
+        <p class="tip-text">
+            左右滑动浏览产品，完成所有图片浏览可进行下一步任务 |
+            已浏览：<span id="viewNum">1</span> / 4 张
+        </p>
+
+        <p class="product-intro">
+            青沐植萃牙膏，以天然草本植萃精华温和净护口腔，
+            一刷清新，持久舒适；在洁净牙齿的同时细致呵护牙龈，
+            让每一次刷牙，都像置身森林般自然清爽，价格仅需￥29.9。
+        </p>
+
+        <div class="cart-wrap btn-center" id="cartWrap">
+
+            <p style="font-size:17px;font-weight:500;margin-bottom:10px;">
+                如果您正在挑选一款牙膏，
+                您是否愿意选择将青沐植萃牙膏加入购物车？
+            </p>
+
+            <button class="btn btn-green" onclick="chooseCart('愿意加入')">
+                愿意加入
+            </button>
+
+            <button class="btn btn-red" onclick="chooseCart('不愿意加入')">
+                不愿意加入
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- 第三页 -->
+
+    <div class="page" id="page3">
+
+        <h2>产品评价调查问卷</h2>
+
+        <form id="surveyForm">
+
+            <input type="hidden" name="cart_choice" id="cartChoice">
+
+            <!-- 1 -->
+
+            <div class="q-item">
+
+                <div class="q-title">
+                    1. 您刚刚浏览过程中是否有感觉到Pad震动？
+                </div>
+
+                <label class="option">
+                    <input type="radio" name="check" value="是"> 是
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="check" value="否"> 否
+                </label>
+
+            </div>
+
+            <!-- 2 -->
+
+            <div class="q-item">
+
+                <div class="q-title">
+                    2. 您认为这款牙膏类型在整体口腔清洁效果方面能达到多少分？（0-100分）
+                </div>
+
+                <div class="slider-container">
+
+                    <div class="score-row">
+                        <span class="score-label">0分</span>
+                        <span class="score-text">50分</span>
+                        <span class="score-label">100分</span>
+                    </div>
+
+                    <input
+                        type="range"
+                        class="score-slider"
+                        name="score_overall_cleaning"
+                        min="0"
+                        max="100"
+                        value="50"
+                        oninput="updateScore(this)"
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- 3 -->
+
+            <div class="q-item">
+
+                <div class="q-title">
+                    3. 您认为这款牙膏类型在帮助您清洁牙齿方面能达到多少分？（0-100分）
+                </div>
+
+                <div class="slider-container">
+
+                    <div class="score-row">
+                        <span class="score-label">0分</span>
+                        <span class="score-text">50分</span>
+                        <span class="score-label">100分</span>
+                    </div>
+
+                    <input
+                        type="range"
+                        class="score-slider"
+                        name="score_clean_teeth"
+                        min="0"
+                        max="100"
+                        value="50"
+                        oninput="updateScore(this)"
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- 4 -->
+
+            <div class="q-item">
+
+                <div class="q-title">
+                    4. 您认为这款牙膏类型在减少牙菌斑或牙面污渍方面的效果能达到多少分？（0-100分）
+                </div>
+
+                <div class="slider-container">
+
+                    <div class="score-row">
+                        <span class="score-label">0分</span>
+                        <span class="score-text">50分</span>
+                        <span class="score-label">100分</span>
+                    </div>
+
+                    <input
+                        type="range"
+                        class="score-slider"
+                        name="score_plaque_stain"
+                        min="0"
+                        max="100"
+                        value="50"
+                        oninput="updateScore(this)"
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- 5 -->
+
+            <div class="q-item">
+
+                <div class="q-title">
+                    5. 您认为这款牙膏类型在口腔清洁有效性方面能达到多少分？（0-100分）
+                </div>
+
+                <div class="slider-container">
+
+                    <div class="score-row">
+                        <span class="score-label">0分</span>
+                        <span class="score-text">50分</span>
+                        <span class="score-label">100分</span>
+                    </div>
+
+                    <input
+                        type="range"
+                        class="score-slider"
+                        name="score_effectiveness"
+                        min="0"
+                        max="100"
+                        value="50"
+                        oninput="updateScore(this)"
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- 6 -->
+
+            <div class="q-item">
+
+                <div class="q-title">
+                    6. 请回想您刚刚浏览的商品页面。浏览该页面后，您感到烦躁的程度是多少？
+                </div>
+
+                <div class="likert-options">
+                    <label class="likert-option"><input type="radio" name="irritability" value="1">1 完全不烦躁</label>
+                    <label class="likert-option"><input type="radio" name="irritability" value="2">2 很轻微烦躁</label>
+                    <label class="likert-option"><input type="radio" name="irritability" value="3">3 比较轻微烦躁</label>
+                    <label class="likert-option"><input type="radio" name="irritability" value="4">4 一般</label>
+                    <label class="likert-option"><input type="radio" name="irritability" value="5">5 比较烦躁</label>
+                    <label class="likert-option"><input type="radio" name="irritability" value="6">6 很烦躁</label>
+                    <label class="likert-option"><input type="radio" name="irritability" value="7">7 非常烦躁</label>
+                </div>
+
+            </div>
+
+            <!-- 7 -->
+
+            <div class="q-item">
+
+                <div class="q-title">
+                    7. 请回想您刚刚浏览的商品页面。浏览该页面后，您认为网页专业性怎么样？
+                </div>
+
+                <div class="likert-options">
+                    <label class="likert-option"><input type="radio" name="web_professionalism" value="1">1 非常不专业</label>
+                    <label class="likert-option"><input type="radio" name="web_professionalism" value="2">2 很不专业</label>
+                    <label class="likert-option"><input type="radio" name="web_professionalism" value="3">3 比较不专业</label>
+                    <label class="likert-option"><input type="radio" name="web_professionalism" value="4">4 一般</label>
+                    <label class="likert-option"><input type="radio" name="web_professionalism" value="5">5 比较专业</label>
+                    <label class="likert-option"><input type="radio" name="web_professionalism" value="6">6 很专业</label>
+                    <label class="likert-option"><input type="radio" name="web_professionalism" value="7">7 非常专业</label>
+                </div>
+
+            </div>
+
+            <!-- 8 -->
+
+            <div class="q-item">
+
+                <div class="q-title">
+                    8. 请回想您刚刚浏览的商品页面。浏览该页面后，您认为网页可靠性怎么样？
+                </div>
+
+                <div class="likert-options">
+                    <label class="likert-option"><input type="radio" name="web_reliability" value="1">1 非常不可靠</label>
+                    <label class="likert-option"><input type="radio" name="web_reliability" value="2">2 很不可靠</label>
+                    <label class="likert-option"><input type="radio" name="web_reliability" value="3">3 比较不可靠</label>
+                    <label class="likert-option"><input type="radio" name="web_reliability" value="4">4 一般</label>
+                    <label class="likert-option"><input type="radio" name="web_reliability" value="5">5 比较可靠</label>
+                    <label class="likert-option"><input type="radio" name="web_reliability" value="6">6 很可靠</label>
+                    <label class="likert-option"><input type="radio" name="web_reliability" value="7">7 非常可靠</label>
+                </div>
+
+            </div>
+
+            <!-- 9 -->
+
+            <div class="q-item">
+
+                <div class="q-title">
+                    9. 刚刚浏览的产品详情页下方，介绍了几款产品特点？
+                </div>
+
+                <label class="option">
+                    <input type="radio" name="feature_count" value="1"> 1
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="feature_count" value="2"> 2
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="feature_count" value="3"> 3
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="feature_count" value="4"> 4
+                </label>
+
+            </div>
+
+            <!-- 10 -->
+
+            <div class="q-item">
+
+                <div class="q-title">
+                    10. 您的性别
+                </div>
+
+                <label class="option">
+                    <input type="radio" name="gender" value="男"> 男
+                </label>
+
+                <label class="option">
+                    <input type="radio" name="gender" value="女"> 女
+                </label>
+
+            </div>
+
+            <!-- 11 -->
+
+            <div class="q-item">
+
+                <div class="q-title">
+                    11. 您的年龄
+                </div>
+
+                <input
+                    type="number"
+                    class="text-input"
+                    name="age"
+                    min="1"
+                    max="120"
+                    placeholder="请输入您的年龄"
+                >
+
+            </div>
+
+            <div class="lottery-submit-box" id="submitBtn" onclick="submitSurvey()">
+                提交并参与抽奖
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- 第四页 -->
+
+    <div class="page" id="page4">
+
+        <div class="result-page">
+            <div class="result-text">
+                很遗憾，您未中奖
+            </div>
+
+            <p>
+                感谢您参与本次调研，祝您生活愉快！
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- 大图 -->
+
+<div class="img-modal" id="imgModal" onclick="closeBigImg()">
+    <img id="bigImg" src="">
+</div>
+
+<script>
+    const SUPABASE_URL = 'https://qjzrwckvxclhggxmswxb.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_Y6hI01bl-qy7qwfNgBPmCw_szb-7rhK';
+    const SUPABASE_TABLE = 'survey_responses_novibrate';
+
+    function goPage(num){
+        document.querySelectorAll('.page').forEach(item=>{
+            item.classList.remove('active');
+        });
+
+        document.getElementById('page' + num).classList.add('active');
+
+        window.scrollTo(0,0);
+    }
+
+    function chooseCart(choice){
+        document.getElementById('cartChoice').value = choice;
+        goPage(3);
+    }
+
+    function updateScore(slider){
+        const value = slider.value;
+        const max = slider.max;
+
+        const scoreText =
+            slider.parentElement.querySelector('.score-text');
+
+        scoreText.textContent = value + "分";
+
+        const percent = (value / max) * 100;
+
+        slider.style.background =
+            `linear-gradient(
+                to right,
+                #409eff 0%,
+                #409eff ${percent}%,
+                #e5e7eb ${percent}%,
+                #e5e7eb 100%
+            )`;
+    }
+
+    document.querySelectorAll('.score-slider').forEach(slider=>{
+        updateScore(slider);
+    });
+
+    function openBigImg(src){
+        document.getElementById('bigImg').src = src;
+        document.getElementById('imgModal').style.display = 'flex';
+    }
+
+    function closeBigImg(){
+        document.getElementById('imgModal').style.display = 'none';
+    }
+
+    function toNumber(value){
+        if(value === null || value === undefined || value === ''){
+            return null;
+        }
+
+        return Number(value);
+    }
+
+    async function submitSurvey(){
+
+        const submitBtn = document.getElementById('submitBtn');
+
+        submitBtn.style.pointerEvents = 'none';
+        submitBtn.textContent = '提交中...';
+
+        const form = document.getElementById('surveyForm');
+        const formData = new FormData(form);
+
+        const data = {
+            submitted_at: new Date().toISOString(),
+
+            cart_choice: formData.get('cart_choice') || '',
+
+            check_vibration: formData.get('check') || '',
+
+            score_overall_cleaning: toNumber(formData.get('score_overall_cleaning')),
+            score_clean_teeth: toNumber(formData.get('score_clean_teeth')),
+            score_plaque_stain: toNumber(formData.get('score_plaque_stain')),
+            score_effectiveness: toNumber(formData.get('score_effectiveness')),
+
+            irritability: toNumber(formData.get('irritability')),
+            web_professionalism: toNumber(formData.get('web_professionalism')),
+            web_reliability: toNumber(formData.get('web_reliability')),
+            feature_count: toNumber(formData.get('feature_count')),
+
+            gender: formData.get('gender') || '',
+            age: toNumber(formData.get('age'))
+        };
+
+        console.log('准备提交到无震动表的数据：', data);
+
+        try{
+            const response = await fetch(
+                `${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_KEY,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify(data)
+                }
+            );
+
+            const resultText = await response.text();
+
+            if(!response.ok){
+                console.error('Supabase 提交失败：', response.status, resultText);
+
+                alert(
+                    '提交失败：' +
+                    response.status +
+                    '\n\n' +
+                    resultText
+                );
+
+                submitBtn.style.pointerEvents = 'auto';
+                submitBtn.textContent = '提交并参与抽奖';
+
+                return;
+            }
+
+            goPage(4);
+
+        }catch(error){
+            console.error('网络或代码错误：', error);
+
+            alert('提交失败：网络错误或代码错误，请打开浏览器控制台查看详情');
+
+            submitBtn.style.pointerEvents = 'auto';
+            submitBtn.textContent = '提交并参与抽奖';
+        }
+    }
+
+    const swiperWrap = document.getElementById('swiperWrap');
+    const slideLen = swiperWrap.children.length;
+
+    let currentIndex = 0;
+    let startX = 0;
+    let moveX = 0;
+    let hasViewAll = false;
+
+    function updateViewNum(){
+        document.getElementById('viewNum').innerText =
+            currentIndex + 1;
+    }
+
+    function checkViewComplete(){
+        if(currentIndex === slideLen - 1 && !hasViewAll){
+            hasViewAll = true;
+
+            document.getElementById('cartWrap').style.display =
+                'block';
+        }
+    }
+
+    function slideTo(idx){
+        if(idx < 0) idx = 0;
+
+        if(idx >= slideLen) idx = slideLen - 1;
+
+        currentIndex = idx;
+
+        swiperWrap.style.transform =
+            `translateX(-${currentIndex * 100}%)`;
+
+        updateViewNum();
+
+        checkViewComplete();
+    }
+
+    const swiper = document.getElementById('swiper');
+
+    swiper.addEventListener('touchstart', e=>{
+        startX = e.touches[0].clientX;
+    });
+
+    swiper.addEventListener('touchmove', e=>{
+        moveX = e.touches[0].clientX - startX;
+    });
+
+    swiper.addEventListener('touchend', ()=>{
+
+        if(moveX < -50){
+            slideTo(currentIndex + 1);
+        }
+        else if(moveX > 50){
+            slideTo(currentIndex - 1);
+        }
+
+        moveX = 0;
+    });
+</script>
+
+</body>
+</html>
